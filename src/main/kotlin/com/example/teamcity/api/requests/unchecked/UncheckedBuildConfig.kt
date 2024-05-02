@@ -1,6 +1,7 @@
 package com.example.teamcity.api.requests.unchecked
 
 import com.example.teamcity.api.requests.CrudInterface
+import com.example.teamcity.api.requests.Request
 import io.restassured.RestAssured.given
 import io.restassured.response.Response
 import io.restassured.specification.RequestSpecification

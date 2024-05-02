@@ -1,18 +1,15 @@
-package com.example.teamcity.api
+package com.example.teamcity.api.roles
 
+import com.example.teamcity.api.BaseApiTest
 import com.example.teamcity.api.enums.UserRole.PROJECT_ADMIN
 import com.example.teamcity.api.enums.UserRole.SYSTEM_ADMIN
 import com.example.teamcity.api.generators.TestDataGenerator
 import com.example.teamcity.api.generators.TestDataStorage
 import com.example.teamcity.api.requests.checked.CheckedBuildConfig
 import com.example.teamcity.api.requests.checked.CheckedProject
-import com.example.teamcity.api.requests.checked.CheckedRequests
-import com.example.teamcity.api.requests.checked.CheckedUser
 import com.example.teamcity.api.requests.unchecked.UncheckedBuildConfig
-import com.example.teamcity.api.requests.unchecked.UncheckedProject
 import com.example.teamcity.api.spec.Specifications
 import org.apache.http.HttpStatus
-import org.apache.http.HttpStatus.SC_BAD_REQUEST
 import org.apache.http.HttpStatus.SC_FORBIDDEN
 import org.hamcrest.Matchers
 import org.testng.annotations.Test

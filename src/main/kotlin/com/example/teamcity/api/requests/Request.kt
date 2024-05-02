@@ -1,4 +1,4 @@
-package com.example.teamcity.api.requests.unchecked
+package com.example.teamcity.api.requests
 
 import io.restassured.specification.RequestSpecification
 

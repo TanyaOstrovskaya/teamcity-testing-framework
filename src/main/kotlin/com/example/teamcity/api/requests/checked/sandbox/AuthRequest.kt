@@ -1,4 +1,4 @@
-package com.example.teamcity.api.requests.checked
+package com.example.teamcity.api.requests.checked.sandbox
 
 import com.example.teamcity.api.models.User
 import com.example.teamcity.api.spec.Specifications
