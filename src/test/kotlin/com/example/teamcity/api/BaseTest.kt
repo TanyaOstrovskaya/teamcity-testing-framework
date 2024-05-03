@@ -8,12 +8,12 @@ open class BaseTest {
     protected lateinit var softy: SoftAssertions
 
     @BeforeMethod
-    fun beforeTest() {
+    fun beforeBaseTest() {
         softy = SoftAssertions()
     }
 
     @AfterMethod
-    fun afterTest() {
+    fun afterBaseTest() {
         softy.assertAll()
     }
 }

@@ -8,14 +8,12 @@ object TestDataStorage {
         return addTestData(TestDataGenerator.generate())
     }
 
-    fun addTestData(data: TestData): TestData {
+    private fun addTestData(data: TestData): TestData {
         testDataList.add(data)
         return data
     }
 
-
     fun delete() {
         testDataList.forEach { it.delete() }
     }
-
 }

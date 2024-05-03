@@ -6,4 +6,5 @@ private const val LENGTH = 10;
 
 object RandomData {
     fun getString() = "test_" + RandomStringUtils.randomAlphabetic(LENGTH)
+    fun getStringLowercase() = getString().lowercase()
 }

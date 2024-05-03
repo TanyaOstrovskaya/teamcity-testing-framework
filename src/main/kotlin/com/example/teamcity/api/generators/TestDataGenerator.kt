@@ -7,31 +7,23 @@ object TestDataGenerator {
 
     fun generate(): TestData {
         val user = User(
-            username = RandomData.getString(),
-            password = RandomData.getString(),
-            email = "${RandomData.getString()}@gmail.com",
-            roles = Roles(
-                role = listOf(
-                    Role(
-                        roleId = "SYSTEM_ADMIN",
-                        scope = "g"
-                    )
-                )
-            )
+            username = RandomData.getStringLowercase(),
+            password = RandomData.getStringLowercase(),
+            email = "${RandomData.getStringLowercase()}@gmail.com",
         )
 
         val projectDescription = NewProjectDescription(
             parentProject = Project(
                 locator = "_Root"
             ),
-            name = RandomData.getString(),
-            id = RandomData.getString(),
+            name = RandomData.getStringLowercase(),
+            id = RandomData.getStringLowercase(),
             copyAllAssociatedSettings = true
         )
 
         val buildType = BuildType(
-            id = RandomData.getString(),
-            name = RandomData.getString(),
+            id = RandomData.getStringLowercase(),
+            name = RandomData.getStringLowercase(),
             project = projectDescription
         )
 
@@ -42,14 +34,19 @@ object TestDataGenerator {
         )
     }
 
-    fun generateRoles(userRole: UserRole, scope: String): Roles {
-        return Roles(
-            role = listOf(
-                Role(
-                    roleId = userRole.text,
-                    scope = scope
-                )
+    fun generateRoles(userRole: UserRole, scope: String) = Roles(
+        role = listOf(
+            Role(
+                roleId = userRole.text,
+                scope = scope
             )
         )
-    }
+    )
+
+    fun generateProject(parentProject: Project?) = NewProjectDescription(
+        parentProject = parentProject ?: Project(locator = "_Root"),
+        name = RandomData.getString(),
+        id = RandomData.getString(),
+        copyAllAssociatedSettings = true
+    )
 }

@@ -14,7 +14,7 @@ open class BaseApiTest: BaseTest() {
     val uncheckedWithSuperUser: UncheckedRequests = UncheckedRequests(Specifications.superUserSpec())
 
     @BeforeMethod
-    fun setupTest() {
+    fun setupApiTest() {
         with(checkedWithSuperUser.checkedServerAuthSettings) {
             update(
                 get().copy(perProjectPermissions = "true")
@@ -23,7 +23,7 @@ open class BaseApiTest: BaseTest() {
     }
 
     @AfterMethod
-    fun cleanTest() {
+    fun cleanApiTest() {
         TestDataStorage.delete()
     }
 }
