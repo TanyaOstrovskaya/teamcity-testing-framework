@@ -13,18 +13,18 @@ object TestDataGenerator {
         )
 
         val projectDescription = NewProjectDescription(
-            parentProject = Project(
-                locator = "_Root"
-            ),
             name = RandomData.getStringLowercase(),
             id = RandomData.getStringLowercase(),
-            copyAllAssociatedSettings = true
+            copyAllAssociatedSettings = true,
+            parentProject = null,
         )
 
         val buildType = BuildType(
             id = RandomData.getStringLowercase(),
             name = RandomData.getStringLowercase(),
-            project = projectDescription
+            project = Project(
+                locator = projectDescription.id!!
+            )
         )
 
         return TestData(
@@ -41,12 +41,5 @@ object TestDataGenerator {
                 scope = scope
             )
         )
-    )
-
-    fun generateProject(parentProject: Project = Project(locator = "_Root")) = NewProjectDescription(
-        parentProject = parentProject,
-        name = RandomData.getString(),
-        id = RandomData.getString(),
-        copyAllAssociatedSettings = true
     )
 }

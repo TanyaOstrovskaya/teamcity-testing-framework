@@ -1,4 +1,4 @@
-package com.example.teamcity.api.project.roles
+package com.example.teamcity.api.project.create.userroles
 
 import com.example.teamcity.api.BaseApiTest
 import com.example.teamcity.api.enums.UserRole.SYSTEM_ADMIN

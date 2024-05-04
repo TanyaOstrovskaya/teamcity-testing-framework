@@ -1,4 +1,4 @@
-package com.example.teamcity.api.project.roles
+package com.example.teamcity.api.project.create.userroles
 
 import com.example.teamcity.api.BaseApiTest
 import com.example.teamcity.api.enums.UserRole
@@ -8,6 +8,7 @@ import com.example.teamcity.api.enums.UserRole.PROJECT_DEVELOPER
 import com.example.teamcity.api.enums.UserRole.PROJECT_VIEWER
 import com.example.teamcity.api.enums.UserRole.SYSTEM_ADMIN
 import com.example.teamcity.api.generators.TestDataGenerator
+import com.example.teamcity.api.generators.TestDataStorage
 import com.example.teamcity.api.requests.checked.CheckedProject
 import com.example.teamcity.api.requests.unchecked.UncheckedProject
 import com.example.teamcity.api.spec.Specifications
@@ -24,7 +25,9 @@ class SubprojectCreateUserRolesTest: BaseApiTest() {
 
         val project = CheckedProject(Specifications.authSpec(testData.user))
             .create(testData.project)
-        val subProjectDescription = TestDataGenerator.generateProject(parentProject = project)
+        val secondTestData = TestDataStorage.addTestData()
+
+        val subProjectDescription = secondTestData.project.copy(parentProject = project)
         val subProject = CheckedProject(Specifications.authSpec(testData.user))
             .create(subProjectDescription)
 
@@ -38,11 +41,11 @@ class SubprojectCreateUserRolesTest: BaseApiTest() {
         testData.user.roles = TestDataGenerator.generateRoles(PROJECT_ADMIN, "p:${testData.project.id}")
         checkedWithSuperUser.userRequest.create(testData.user)
 
-        val subProjectDescription = TestDataGenerator.generateProject(parentProject = project)
+        val secondTestData = TestDataStorage.addTestData()
         val subProject = CheckedProject(Specifications.authSpec(testData.user))
-            .create(subProjectDescription)
+            .create(secondTestData.project.copy(parentProject = project))
 
-        softy.assertThat(subProject.id).isEqualTo(subProjectDescription.id)
+        softy.assertThat(subProject.id).isEqualTo(secondTestData.project.id)
         softy.assertThat(subProject.parentProjectId).isEqualTo(testData.project.id)
     }
 
@@ -52,10 +55,8 @@ class SubprojectCreateUserRolesTest: BaseApiTest() {
         testData.user.roles = TestDataGenerator.generateRoles(role, "p:${testData.project.id}")
         checkedWithSuperUser.userRequest.create(testData.user)
 
-        val subProjectDescription = TestDataGenerator.generateProject(parentProject = project)
-
         UncheckedProject(Specifications.authSpec(testData.user))
-            .create(subProjectDescription)
+            .create(TestDataStorage.addTestData().project.copy(parentProject = project))
             .then().assertThat().statusCode(SC_FORBIDDEN)
     }
 

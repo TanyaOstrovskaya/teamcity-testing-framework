@@ -13,7 +13,7 @@ data class TestData(val user: User,
 ) {
     fun delete() {
         val spec = Specifications.authSpec(user)
-        UncheckedProject(spec).delete(project.id)
+        UncheckedProject(spec).delete(project.id!!)
         UncheckedUser(spec).delete(user.username)
     }
 }
