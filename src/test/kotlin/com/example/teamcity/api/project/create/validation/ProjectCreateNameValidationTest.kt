@@ -43,7 +43,7 @@ class ProjectCreateNameValidationTest: BaseApiTest() {
             .then()
                 .assertThat()
                 .statusCode(SC_BAD_REQUEST)
-                .body(containsString("Project with this name already exists: ${testData.project.name}"));
+                .body(containsString("Project with this name already exists: ${testData.project.name}"))
     }
 
     @Test

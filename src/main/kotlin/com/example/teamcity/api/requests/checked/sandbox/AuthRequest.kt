@@ -12,6 +12,6 @@ class AuthRequest(val user: User) {
         .spec(Specifications.authSpec(user))
         .get("/authenticationTest.html?csrf")
         .then().assertThat().statusCode(SC_OK)
-        .extract().asString();
+        .extract().asString()
 
 }

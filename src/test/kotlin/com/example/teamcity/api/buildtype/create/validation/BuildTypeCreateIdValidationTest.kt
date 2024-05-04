@@ -44,7 +44,7 @@ class BuildTypeCreateIdValidationTest: BaseApiTest() {
             .then()
             .assertThat()
             .statusCode(SC_INTERNAL_SERVER_ERROR)   // todo: report bug, answer is 500, should be 400
-            .body(containsString(errorString));
+            .body(containsString(errorString))
     }
 
     @Test

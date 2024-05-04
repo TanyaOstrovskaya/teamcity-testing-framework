@@ -63,7 +63,7 @@ class BuildTypeCreateUserRolesTest: BaseApiTest() {
         UncheckedBuildConfig(Specifications.authSpec(testData.user))
             .create(testData.buildType)
             .then().assertThat().statusCode(SC_FORBIDDEN)
-            .body(containsString("You do not have enough permissions to edit project with id: ${testData.project.id}"));
+            .body(containsString("You do not have enough permissions to edit project with id: ${testData.project.id}"))
     }
 
     companion object {

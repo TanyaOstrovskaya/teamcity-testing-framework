@@ -31,7 +31,7 @@ class ProjectCreateIdValidationTest:  BaseApiTest() {
             .then()
             .assertThat()
             .statusCode(SC_INTERNAL_SERVER_ERROR)   // todo: report bug, answer is 500, should be 400
-            .body(containsString(errorString));
+            .body(containsString(errorString))
     }
 
     @Test
@@ -51,7 +51,7 @@ class ProjectCreateIdValidationTest:  BaseApiTest() {
             .then()
             .assertThat()
             .statusCode(SC_BAD_REQUEST)
-            .body(containsString("Project ID \"${testData.project.id}\" is already used by another project"));
+            .body(containsString("Project ID \"${testData.project.id}\" is already used by another project"))
     }
 
     @Test
@@ -69,7 +69,7 @@ class ProjectCreateIdValidationTest:  BaseApiTest() {
             .then()
             .assertThat()
             .statusCode(SC_BAD_REQUEST)
-            .body(containsString("Project ID \"${testData.project.id}\" is already used by another project"));
+            .body(containsString("Project ID \"${testData.project.id}\" is already used by another project"))
     }
 
     companion object {
