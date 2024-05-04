@@ -9,17 +9,9 @@ import com.example.teamcity.api.requests.checked.CheckedBuildConfig
 import com.example.teamcity.api.requests.unchecked.UncheckedBuildConfig
 import com.example.teamcity.api.spec.Specifications
 import org.apache.http.HttpStatus.SC_FORBIDDEN
-import org.testng.annotations.BeforeMethod
 import org.testng.annotations.Test
 
 class BuildTypeCreateUserRolesTest: BaseApiTest() {
-
-    lateinit var testData: TestData
-
-    @BeforeMethod
-    fun beforeTest() {
-        testData = TestDataStorage.addTestData()
-    }
 
     @Test
     fun projectAdminShouldHaveRightsToCreateBuildConfigToTheirProject() {

@@ -43,8 +43,8 @@ object TestDataGenerator {
         )
     )
 
-    fun generateProject(parentProject: Project?) = NewProjectDescription(
-        parentProject = parentProject ?: Project(locator = "_Root"),
+    fun generateProject(parentProject: Project = Project(locator = "_Root")) = NewProjectDescription(
+        parentProject = parentProject,
         name = RandomData.getString(),
         id = RandomData.getString(),
         copyAllAssociatedSettings = true

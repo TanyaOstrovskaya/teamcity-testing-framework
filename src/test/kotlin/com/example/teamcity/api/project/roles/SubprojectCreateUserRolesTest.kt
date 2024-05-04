@@ -7,25 +7,15 @@ import com.example.teamcity.api.enums.UserRole.PROJECT_ADMIN
 import com.example.teamcity.api.enums.UserRole.PROJECT_DEVELOPER
 import com.example.teamcity.api.enums.UserRole.PROJECT_VIEWER
 import com.example.teamcity.api.enums.UserRole.SYSTEM_ADMIN
-import com.example.teamcity.api.generators.TestData
 import com.example.teamcity.api.generators.TestDataGenerator
-import com.example.teamcity.api.generators.TestDataStorage
 import com.example.teamcity.api.requests.checked.CheckedProject
 import com.example.teamcity.api.requests.unchecked.UncheckedProject
 import com.example.teamcity.api.spec.Specifications
 import org.apache.http.HttpStatus.SC_FORBIDDEN
-import org.testng.annotations.BeforeMethod
 import org.testng.annotations.DataProvider
 import org.testng.annotations.Test
 
-class SubProjectCreateUserRolesTest: BaseApiTest() {
-
-    lateinit var testData: TestData
-
-    @BeforeMethod
-    fun beforeTest() {
-        testData = TestDataStorage.addTestData()
-    }
+class SubprojectCreateUserRolesTest: BaseApiTest() {
 
     @Test
     fun systemAdminShouldHaveRightsToCreateSubProject() {
@@ -34,7 +24,7 @@ class SubProjectCreateUserRolesTest: BaseApiTest() {
 
         val project = CheckedProject(Specifications.authSpec(testData.user))
             .create(testData.project)
-        val subProjectDescription = TestDataGenerator.generateProject(project)
+        val subProjectDescription = TestDataGenerator.generateProject(parentProject = project)
         val subProject = CheckedProject(Specifications.authSpec(testData.user))
             .create(subProjectDescription)
 
@@ -48,7 +38,7 @@ class SubProjectCreateUserRolesTest: BaseApiTest() {
         testData.user.roles = TestDataGenerator.generateRoles(PROJECT_ADMIN, "p:${testData.project.id}")
         checkedWithSuperUser.userRequest.create(testData.user)
 
-        val subProjectDescription = TestDataGenerator.generateProject(project)
+        val subProjectDescription = TestDataGenerator.generateProject(parentProject = project)
         val subProject = CheckedProject(Specifications.authSpec(testData.user))
             .create(subProjectDescription)
 
@@ -62,7 +52,7 @@ class SubProjectCreateUserRolesTest: BaseApiTest() {
         testData.user.roles = TestDataGenerator.generateRoles(role, "p:${testData.project.id}")
         checkedWithSuperUser.userRequest.create(testData.user)
 
-        val subProjectDescription = TestDataGenerator.generateProject(project)
+        val subProjectDescription = TestDataGenerator.generateProject(parentProject = project)
 
         UncheckedProject(Specifications.authSpec(testData.user))
             .create(subProjectDescription)
