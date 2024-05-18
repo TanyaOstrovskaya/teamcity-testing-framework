@@ -5,6 +5,7 @@ import com.example.teamcity.api.requests.CrudInterface
 import com.example.teamcity.api.requests.Request
 import com.example.teamcity.api.requests.unchecked.UncheckedProject
 import io.restassured.specification.RequestSpecification
+import org.apache.http.HttpStatus.SC_NO_CONTENT
 import org.apache.http.HttpStatus.SC_OK
 
 class CheckedProject(spec: RequestSpecification): Request(spec), CrudInterface {
@@ -28,7 +29,7 @@ class CheckedProject(spec: RequestSpecification): Request(spec), CrudInterface {
     override fun delete(id: String): String {
         return UncheckedProject(spec)
             .delete(id = id )
-            .then().assertThat().statusCode(SC_OK)
+            .then().assertThat().statusCode(SC_NO_CONTENT)
             .extract().asString()
     }
 }
