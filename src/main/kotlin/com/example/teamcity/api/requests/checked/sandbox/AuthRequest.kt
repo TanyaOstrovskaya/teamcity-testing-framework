@@ -1,4 +1,4 @@
-package com.example.teamcity.api.requests.checked
+package com.example.teamcity.api.requests.checked.sandbox
 
 import com.example.teamcity.api.models.User
 import com.example.teamcity.api.spec.Specifications
@@ -12,6 +12,6 @@ class AuthRequest(val user: User) {
         .spec(Specifications.authSpec(user))
         .get("/authenticationTest.html?csrf")
         .then().assertThat().statusCode(SC_OK)
-        .extract().asString();
+        .extract().asString()
 
 }

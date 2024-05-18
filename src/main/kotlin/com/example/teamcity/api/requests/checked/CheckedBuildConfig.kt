@@ -2,7 +2,7 @@ package com.example.teamcity.api.requests.checked
 
 import com.example.teamcity.api.models.BuildType
 import com.example.teamcity.api.requests.CrudInterface
-import com.example.teamcity.api.requests.unchecked.Request
+import com.example.teamcity.api.requests.Request
 import com.example.teamcity.api.requests.unchecked.UncheckedBuildConfig
 import io.restassured.specification.RequestSpecification
 import org.apache.http.HttpStatus.SC_NO_CONTENT

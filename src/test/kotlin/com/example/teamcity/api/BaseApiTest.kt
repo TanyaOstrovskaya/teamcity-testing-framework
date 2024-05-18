@@ -1,7 +1,6 @@
 package com.example.teamcity.api
 
 import com.example.teamcity.api.generators.TestData
-import com.example.teamcity.api.generators.TestDataGenerator
 import com.example.teamcity.api.generators.TestDataStorage
 import com.example.teamcity.api.requests.checked.CheckedRequests
 import com.example.teamcity.api.requests.unchecked.UncheckedRequests
@@ -15,14 +14,20 @@ open class BaseApiTest: BaseTest() {
 
     val uncheckedWithSuperUser: UncheckedRequests = UncheckedRequests(Specifications.superUserSpec())
 
+    lateinit var testData: TestData
 
     @BeforeMethod
-    fun setupTest() {
-//        testDataStorage = TestDataStorage()
+    fun setupApiTest() {
+        testData = TestDataStorage.addTestData()
+        with(checkedWithSuperUser.checkedServerAuthSettings) {
+            update(
+                get().copy(perProjectPermissions = "true")
+            )
+        }
     }
 
     @AfterMethod
-    fun cleanTest() {
+    fun cleanApiTest() {
         TestDataStorage.delete()
     }
 }
