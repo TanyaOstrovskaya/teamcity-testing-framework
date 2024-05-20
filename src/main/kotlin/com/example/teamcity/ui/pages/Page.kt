@@ -10,7 +10,6 @@ import com.example.teamcity.ui.Selectors.byDataTest
 import com.example.teamcity.ui.Selectors.byType
 import com.example.teamcity.ui.elements.PageElement
 import java.time.Duration
-import java.util.function.Function
 
 open class Page {
 

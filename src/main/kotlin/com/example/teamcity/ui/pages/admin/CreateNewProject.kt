@@ -3,7 +3,6 @@ package com.example.teamcity.ui.pages.admin
 import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.element
-import com.example.teamcity.ui.Selectors.byClass
 import com.example.teamcity.ui.Selectors.byId
 import com.example.teamcity.ui.pages.Page
 import java.time.Duration

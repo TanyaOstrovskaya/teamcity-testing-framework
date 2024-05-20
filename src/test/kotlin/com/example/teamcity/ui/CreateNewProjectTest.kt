@@ -29,7 +29,7 @@ class CreateNewProjectTest: BaseUiTest() {
             .last()
             .header
             .should(exist)
-            .shouldHave(Condition.text(testData.project.name))
+            .shouldHave(Condition.text(testData.project.name!!))
 
     }
 }
