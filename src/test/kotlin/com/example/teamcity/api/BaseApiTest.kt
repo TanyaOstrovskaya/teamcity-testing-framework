@@ -1,5 +1,6 @@
 package com.example.teamcity.api
 
+import com.example.teamcity.BaseTest
 import com.example.teamcity.api.generators.TestData
 import com.example.teamcity.api.generators.TestDataStorage
 import com.example.teamcity.api.requests.checked.CheckedRequests
@@ -10,24 +11,5 @@ import org.testng.annotations.BeforeMethod
 
 open class BaseApiTest: BaseTest() {
 
-    val checkedWithSuperUser: CheckedRequests = CheckedRequests(Specifications.superUserSpec())
 
-    val uncheckedWithSuperUser: UncheckedRequests = UncheckedRequests(Specifications.superUserSpec())
-
-    lateinit var testData: TestData
-
-    @BeforeMethod
-    fun setupApiTest() {
-        testData = TestDataStorage.addTestData()
-        with(checkedWithSuperUser.checkedServerAuthSettings) {
-            update(
-                get().copy(perProjectPermissions = "true")
-            )
-        }
-    }
-
-    @AfterMethod
-    fun cleanApiTest() {
-        TestDataStorage.delete()
-    }
 }
