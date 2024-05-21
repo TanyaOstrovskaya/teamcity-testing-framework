@@ -13,11 +13,11 @@ import java.time.Duration
 
 open class Page {
 
-    private val submitButton = element(byType("submit"))
-    private val savingWaitingMarker = element(byType("saving"))
-    private val pageWaitingMarker = element(byDataTest("ring-loader"))
-    private val ringLoader = element(byClass("progressRing"))
-
+    protected val header  by lazy { element(byClass("ProjectPageHeader__title--ih")) }
+    private val submitButton by lazy {  element(byType("submit")) }
+    private val savingWaitingMarker by lazy {  element(byType("saving")) }
+    private val pageWaitingMarker by lazy {  element(byDataTest("ring-loader")) }
+    private val ringLoader by lazy {  element(byClass("progressRing")) }
 
     fun submit() {
         submitButton.click()
@@ -42,5 +42,4 @@ open class Page {
         collection.forEach { it.shouldBe(visible, Duration.ofSeconds(30)) }
         return collection.map { creator(it) }
     }
-
 }
