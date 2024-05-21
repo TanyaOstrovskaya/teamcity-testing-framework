@@ -18,13 +18,14 @@ class CreateProjectPage: Page() {
     private val createProjectManually by lazy { CreateProjectManuallyElement(element(byId("container"))) }
     private val manuallyButton by lazy { element(byText("Manually")) }
 
-    fun open(parentProjectId: String): CreateProjectPage {
-        Selenide.open("/admin/createObjectMenu.html?projectId=$parentProjectId&showMode=createProjectMenu")
+    fun open(projectId: String): CreateProjectPage {
+        Selenide.open("/admin/createObjectMenu.html?projectId=$projectId&showMode=createProjectMenu")
         waitUntilPageLoaded()
         return this
     }
 
     fun createProjectByUrl(url: String): CreateProjectPage {
+        createProjectByUrl.urlInput.shouldBe(visible, Duration.ofSeconds(30)).clear()
         createProjectByUrl.urlInput.sendKeys(url)
         submit()
         return this
