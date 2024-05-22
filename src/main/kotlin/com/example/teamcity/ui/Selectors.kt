@@ -1,6 +1,7 @@
 package com.example.teamcity.ui
 
 import com.codeborne.selenide.Selectors
+import com.codeborne.selenide.Selenide.`$x`
 import com.codeborne.selenide.selector.ByAttribute
 
 object Selectors {
@@ -16,4 +17,7 @@ object Selectors {
     fun byText(value: String) = Selectors.byText(value)
 
     fun byDataHintContainerId(value: String) = ByAttribute("data-hint-container-id", value)
+
+    fun byClassContains(value: String) = `$x`("//*[contains(@class, '$value')]")
+
 }

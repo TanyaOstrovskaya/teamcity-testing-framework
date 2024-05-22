@@ -1,4 +1,4 @@
-package com.example.teamcity.ui.pages.project.create
+package com.example.teamcity.ui.pages.project
 
 import com.codeborne.selenide.Condition.text
 import com.codeborne.selenide.Condition.visible
@@ -9,7 +9,6 @@ import com.example.teamcity.ui.Selectors.byText
 import com.example.teamcity.ui.elements.project.create.CreateProjectByUrlElement
 import com.example.teamcity.ui.elements.project.create.CreateProjectManuallyElement
 import com.example.teamcity.ui.pages.Page
-import com.example.teamcity.ui.pages.project.EditProjectConfigurationPage
 import java.time.Duration
 
 class CreateProjectPage: Page() {
@@ -37,6 +36,7 @@ class CreateProjectPage: Page() {
         createProjectManually.projectName.sendKeys(projectName)
         createProjectManually.projectId.sendKeys(projectId)
         submit()
+        waitRingLoaderAbsent()
         return EditProjectConfigurationPage()
     }
 

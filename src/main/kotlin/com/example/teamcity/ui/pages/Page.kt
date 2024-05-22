@@ -16,12 +16,17 @@ open class Page {
     protected val header  by lazy { element(byClass("ProjectPageHeader__title--ih")) }
     private val submitButton by lazy {  element(byType("submit")) }
     private val savingWaitingMarker by lazy {  element(byType("saving")) }
+    private val createProgressMarker by lazy {  element(byType("createProgress")) }
     private val pageWaitingMarker by lazy {  element(byDataTest("ring-loader")) }
     private val ringLoader by lazy {  element(byClass("progressRing")) }
 
     fun submit() {
         submitButton.click()
         waitUntilDataSaved()
+    }
+
+    fun waitCreateLoaderAbsent() {
+        createProgressMarker.shouldNotBe(visible, Duration.ofSeconds(30))
     }
 
     fun waitRingLoaderAbsent() {

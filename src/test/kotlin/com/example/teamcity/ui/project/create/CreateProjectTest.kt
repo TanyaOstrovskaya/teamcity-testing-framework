@@ -10,7 +10,7 @@ import com.example.teamcity.api.util.Constants.Companion.ROOT_PROJECT_ID
 import com.example.teamcity.ui.BaseUiTest
 import com.example.teamcity.ui.pages.project.ProjectPage
 import com.example.teamcity.ui.pages.project.ProjectsPage
-import com.example.teamcity.ui.pages.project.create.CreateProjectPage
+import com.example.teamcity.ui.pages.project.CreateProjectPage
 import org.testng.annotations.Test
 
 class CreateProjectTest: BaseUiTest() {

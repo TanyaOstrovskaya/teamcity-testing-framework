@@ -1,6 +1,7 @@
 package com.example.teamcity.ui.pages.project
 
 import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.element
 import com.codeborne.selenide.Selenide.elements
@@ -19,7 +20,13 @@ class ProjectsPage: FavouritesPage() {
     fun open(): ProjectsPage {
         Selenide.open(FAVOURITE_PROJECTS)
         waitUntilFavouritePageLoaded()
-        firstSubProject.shouldBe(Condition.visible, Duration.ofSeconds(30))
+        firstSubProject.shouldBe(visible, Duration.ofSeconds(30))
+        return this
+    }
+
+    fun waitProjectsLoaded(): ProjectsPage {
+        firstSubProject.shouldBe(visible, Duration.ofSeconds(30))
+        subProjects.forEach { it.shouldBe(visible, Duration.ofSeconds(30))}
         return this
     }
 

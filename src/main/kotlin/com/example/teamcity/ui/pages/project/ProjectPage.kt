@@ -11,7 +11,7 @@ import com.example.teamcity.ui.elements.project.ProjectElement
 import com.example.teamcity.ui.elements.project.edit.EditProjectButton
 import com.example.teamcity.ui.elements.project.edit.EditProjectMenuElement
 import com.example.teamcity.ui.pages.Page
-import com.example.teamcity.ui.pages.project.create.CreateProjectPage
+import com.example.teamcity.ui.pages.buildtype.CreateBuildTypePage
 import java.time.Duration
 
 class ProjectPage(private val project: Project): Page()  {
@@ -33,6 +33,13 @@ class ProjectPage(private val project: Project): Page()  {
         editProjectMenuElement.menuOptions.forEach { it.shouldBe(visible, Duration.ofSeconds(30))}
         editProjectMenuElement.menuOptions.find { it.text() == "New subproject..." }!!.click()
         return CreateProjectPage()
+    }
+
+    fun openCreateBuildTypePage(): CreateBuildTypePage {
+        editProjectButton.dropdown.click()
+        editProjectMenuElement.menuOptions.forEach { it.shouldBe(visible, Duration.ofSeconds(30))}
+        editProjectMenuElement.menuOptions.find { it.text() == "New build configuration..." }!!.click()
+        return CreateBuildTypePage()
     }
 
     fun getSubprojects() = generatePageElements(subProjects) { el -> ProjectElement(el) }
