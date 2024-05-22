@@ -49,14 +49,14 @@ class CreateProjectTest: BaseUiTest() {
             .open()
             .openCreateSubprojectPage()
             .createProjectManually(secondTestData.project.name!!, secondTestData.project.id!!)
-            .checkSubprojectCreateSuccessMessageDisplayed(secondTestData.project.id!!, testData.project.id!!)
+            .checkSubprojectCreateSuccessMessageDisplayed(secondTestData.project.id, testData.project.id!!)
         ProjectPage(project)
             .open()
             .getSubprojects()
             .last()
             .header
             .should(exist)
-            .shouldHave(Condition.text(secondTestData.project.name!!))
+            .shouldHave(Condition.text(secondTestData.project.name))
     }
 
     @Test

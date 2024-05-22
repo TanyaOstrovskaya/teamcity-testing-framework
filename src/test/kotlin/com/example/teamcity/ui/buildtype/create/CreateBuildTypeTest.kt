@@ -54,7 +54,7 @@ class CreateBuildTypeTest: BaseUiTest() {
             .inputRepositoryUrl(url)
 
         BuildTypePage()
-            .checkBuildTypeTitle(secondTestData.buildType.name!!)
+            .checkBuildTypeTitle(secondTestData.buildType.name)
             .checkVcsRootsDisplayed()
     }
 
