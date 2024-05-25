@@ -81,7 +81,3 @@ mvn test -DsuiteXmlFile=testng-suites/api-suite.xml
 
 echo "Run UI tests"
 mvn test -DsuiteXmlFile=testng-suites/ui-suite.xml
-
-#######################################
-## TODO 1: create setup test
-## TODO 2: add suites
