@@ -54,7 +54,7 @@ class CreateBuildTypeTest: BaseUiTest() {
             .inputRepositoryUrl(url)
 
         BuildTypePage()
-            .checkBuildTypeTitle(secondTestData.buildType.name)
+            .checkBuildTypeTitle(secondTestData.buildType.name!!)
             .checkVcsRootsDisplayed()
     }
 
@@ -73,6 +73,6 @@ class CreateBuildTypeTest: BaseUiTest() {
             .switchManuallyMode()
             .createBuildTypeManually("", "")
             .checkErrorBuildTypeName("Name must not be empty")
-            .checkErrorBuildTypeName("The ID field must not be empty.")
+            .checkErrorBuildTypeId("The ID field must not be empty.")
     }
 }

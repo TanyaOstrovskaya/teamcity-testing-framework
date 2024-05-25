@@ -9,7 +9,7 @@ import org.assertj.core.api.SoftAssertions
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 
-open class BaseTest {
+open class BaseTest(private val serverStarted: Boolean = true) {
     protected lateinit var softy: SoftAssertions
     protected lateinit var testData: TestData
 
@@ -21,10 +21,12 @@ open class BaseTest {
     fun beforeBaseTest() {
         softy = SoftAssertions()
         testData = TestDataStorage.addTestData()
-        with(checkedWithSuperUser.checkedServerAuthSettings) {
-            update(
-                get().copy(perProjectPermissions = "true")
-            )
+        if (serverStarted) {
+            with(checkedWithSuperUser.checkedServerAuthSettings) {
+                update(
+                    get().copy(perProjectPermissions = "true")
+                )
+            }
         }
     }
 

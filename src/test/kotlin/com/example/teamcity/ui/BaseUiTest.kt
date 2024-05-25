@@ -10,7 +10,7 @@ import com.example.teamcity.ui.pages.LoginPage
 import org.testng.annotations.BeforeSuite
 
 
-open class BaseUiTest: BaseTest() {
+open class BaseUiTest(serverStarted: Boolean = true): BaseTest(serverStarted) {
 
     @BeforeSuite
     fun setupUiTests() {
