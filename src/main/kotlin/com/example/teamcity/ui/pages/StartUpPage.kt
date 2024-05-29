@@ -28,10 +28,8 @@ class StartUpPage: Page() {
         waitUntilPageLoaded()
         acceptLicense.shouldBe(enabled, Duration.ofMinutes(5))
         acceptLicense.scrollTo()
-        acceptLicense.shouldBe(visible, Duration.ofSeconds(10))
         acceptLicense.click()
-        submitButton.shouldBe(enabled, Duration.ofSeconds(10))
-        submit()
+        submitButton.click()
 
         return this
     }
