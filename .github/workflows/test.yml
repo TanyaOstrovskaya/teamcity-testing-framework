@@ -41,7 +41,7 @@ jobs:
         run: cat src/main/resources/config.properties
 
       - name: Pull Selenoid Chrome/Firefox/..
-        run: docker pull selenoid/vnc:firefox_125.0
+        run: docker pull selenoid/vnc:firefox_89.0
         # todo: можно вытащить все значения контейнеров из browsers.json и выкачать их
 
       - name: Run selenoid
