@@ -23,7 +23,6 @@ jobs:
           docker rm -v teamcity-server || true
           docker stop teamcity-agent || true
           docker rm -v teamcity-agent || true
-          rm -rf ./tmp
 
       - name: Install ifconfig
         run: sudo apt-get update && sudo apt-get install -y net-tools
@@ -49,7 +48,7 @@ jobs:
         run: |
           docker run -d --name selenoid \
           -v /var/run/docker.sock:/var/run/docker.sock \
-          -v /Users/tatiana.ostrovskaia/Documents/repos/teamcity-testing-framework/infra/:/etc/selenoid/:ro \
+          -v $(pwd)/infra/:/etc/selenoid/:ro \
           -p 4444:4444 \
           aerokube/selenoid
 
@@ -63,8 +62,8 @@ jobs:
       - name: Run teamcity server
         run: |
           docker run -u 0 -d --name teamcity-server \
-          -v /Users/tatiana.ostrovskaia/Documents/repos/teamcity-testing-framework/tmp/teamcity_server/datadir:/data/teamcity_server/datadir \
-          -v /Users/tatiana.ostrovskaia/Documents/repos/teamcity-testing-framework/tmp/teamcity_server/logs:/opt/teamcity/logs \
+          -v $(pwd)/tmp/teamcity_server/datadir:/data/teamcity_server/datadir \
+          -v $(pwd)/tmp/teamcity_server/logs:/opt/teamcity/logs \
           -p 8111:8111 \
           jetbrains/teamcity-server:2023.11.1
 
@@ -83,7 +82,7 @@ jobs:
 #      - name: Run TeamCity agent
 #        run: |
 #          docker run -e SERVER_URL=http://$HOST:8111 -u 0 -d --name teamcity-agent \
-#          -v /Users/tatiana.ostrovskaia/Documents/repos/teamcity-testing-framework/tmp/teamcity_agent/conf:/data/teamcity_agent/conf \
+#          -v $(pwd)/tmp/teamcity_agent/conf:/data/teamcity_agent/conf \
 #          jetbrains/teamcity-agent:2023.11.1
 #
 #      - name: Set up TeamCity agent
