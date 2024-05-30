@@ -20,5 +20,6 @@ class LoginPage: Page() {
         usernameInput.sendKeys(user.username)
         passwordInput.sendKeys(user.password)
         submit()
+        waitRingLoaderAbsent()
     }
 }

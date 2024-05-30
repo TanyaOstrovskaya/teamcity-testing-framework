@@ -1,5 +1,6 @@
 package com.example.teamcity.ui.pages.buildtype
 
+import com.codeborne.selenide.Condition.enabled
 import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.element
@@ -19,7 +20,9 @@ class CreateBuildTypePage: Page() {
     }
 
     fun switchFromRepositoryUrlMode(): CreateBuildTypeFromRepositoryUrlPage {
-        fromRepositoryUrlButton.shouldBe(visible, ofSeconds(10)).click()
+        fromRepositoryUrlButton.shouldBe(visible, ofSeconds(10))
+        fromRepositoryUrlButton.shouldBe(enabled, ofSeconds(10))
+        fromRepositoryUrlButton.click()
         waitRingLoaderAbsent()
         return CreateBuildTypeFromRepositoryUrlPage()
     }
