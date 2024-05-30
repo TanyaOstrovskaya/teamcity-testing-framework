@@ -42,7 +42,7 @@ class CreateBuildTypeTest: BaseUiTest() {
         val secondTestData = TestDataStorage.addTestData()
 
         val project = checkedWithSuperUser.projectRequest.create(testData.project)
-        testData.user.roles = TestDataGenerator.generateRoles(PROJECT_ADMIN, "p:${testData.project.id}")
+        testData.user.roles = TestDataGenerator.generateRoles(SYSTEM_ADMIN, "g")
 
         loginAsUser(testData.user)
 
