@@ -93,3 +93,9 @@ jobs:
 
       - name: Run UI tests
         run: ./mvnw test -Dxml-suite=testng-suites/ui-suite.xml
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifacts
+          path: target/
