@@ -1,11 +1,11 @@
-package com.example.teamcity.ui.pages
+package com.example.teamcity.ui.pages.startup
 
 import com.codeborne.selenide.Condition.enabled
 import com.codeborne.selenide.Condition.text
-import com.codeborne.selenide.Condition.visible
 import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.element
 import com.example.teamcity.ui.Selectors.byId
+import com.example.teamcity.ui.pages.Page
 import java.time.Duration
 
 class StartUpPage: Page() {

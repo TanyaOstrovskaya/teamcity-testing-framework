@@ -79,15 +79,14 @@ jobs:
       - name: Print config.properties file
         run: cat src/main/resources/config.properties
 
-#      - name: Run TeamCity agent
-#        run: |
-#          docker run -e SERVER_URL=http://$HOST:8111 -u 0 -d --name teamcity-agent \
-#          -v $(pwd)/tmp/teamcity_agent/conf:/data/teamcity_agent/conf \
-#          jetbrains/teamcity-agent:2023.11.1
-#
-#      - name: Set up TeamCity agent
-#        # TODO: написать тестик setupTeamCityAgentTest
-#        run: ./mvnw test -Dtest=SetupTest#setupTeamCityAgentTest
+      - name: Run TeamCity agent
+        run: |
+          docker run -e SERVER_URL=http://$HOST:8111 -u 0 -d --name teamcity-agent \
+          -v $(pwd)/tmp/teamcity_agent/conf:/data/teamcity_agent/conf \
+          jetbrains/teamcity-agent:2023.11.1
+
+      - name: Set up TeamCity agent
+        run: ./mvnw test -Dtest=SetupTest#startUpTeamcityAgentTest
 
       - name: Run API tests
         run: ./mvnw test -Dxml-suite=testng-suites/api-suite.xml
