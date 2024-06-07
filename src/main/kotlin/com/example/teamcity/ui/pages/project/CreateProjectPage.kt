@@ -33,7 +33,9 @@ class CreateProjectPage: Page() {
     fun createProjectManually(projectName: String,
                               projectId: String): EditProjectConfigurationPage {
         manuallyButton.click()
+        createProjectManually.projectName.shouldBe(visible, Duration.ofSeconds(10)).clear()
         createProjectManually.projectName.sendKeys(projectName)
+        createProjectManually.projectId.clear()
         createProjectManually.projectId.sendKeys(projectId)
         submit()
         waitRingLoaderAbsent()

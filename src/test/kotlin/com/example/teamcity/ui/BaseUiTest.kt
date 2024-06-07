@@ -7,10 +7,11 @@ import com.example.teamcity.api.models.User
 import com.example.teamcity.api.requests.checked.CheckedUser
 import com.example.teamcity.api.spec.Specifications
 import com.example.teamcity.ui.pages.LoginPage
+import com.example.teamcity.ui.pages.favourites.FavouritesPage
 import org.testng.annotations.BeforeSuite
 
 
-open class BaseUiTest: BaseTest() {
+open class BaseUiTest(serverStarted: Boolean = true): BaseTest(serverStarted) {
 
     @BeforeSuite
     fun setupUiTests() {
@@ -26,5 +27,7 @@ open class BaseUiTest: BaseTest() {
     fun loginAsUser(user: User){
         CheckedUser(Specifications.superUserSpec()).create(user)
         LoginPage().open().login(user)
+        FavouritesPage().waitFavouriteBuildsHeader()
+
     }
 }

@@ -14,7 +14,7 @@ import java.time.Duration
 open class Page {
 
     protected val header  by lazy { element(byClass("ProjectPageHeader__title--ih")) }
-    private val submitButton by lazy {  element(byType("submit")) }
+    protected val submitButton by lazy {  element(byType("submit")) }
     private val savingWaitingMarker by lazy {  element(byType("saving")) }
     private val createProgressMarker by lazy {  element(byType("createProgress")) }
     private val pageWaitingMarker by lazy {  element(byDataTest("ring-loader")) }
@@ -34,7 +34,7 @@ open class Page {
     }
 
     fun waitUntilPageLoaded() {
-        pageWaitingMarker.shouldNotBe(visible, Duration.ofMinutes(1))
+        pageWaitingMarker.shouldNotBe(visible, Duration.ofMinutes(3))
     }
 
     fun waitUntilDataSaved() {

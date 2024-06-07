@@ -21,6 +21,7 @@
         <gson.version>2.10.1</gson.version>
         <assertj.version>3.25.3</assertj.version>
         <selenide.version>7.3.1</selenide.version>
+        <xml-suite>testng-suites/default.xml</xml-suite>
     </properties>
 
     <repositories>
@@ -70,6 +71,9 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${xml-suite}</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
