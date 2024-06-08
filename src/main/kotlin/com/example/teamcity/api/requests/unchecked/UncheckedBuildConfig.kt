@@ -2,6 +2,7 @@ package com.example.teamcity.api.requests.unchecked
 
 import com.example.teamcity.api.requests.CrudInterface
 import com.example.teamcity.api.requests.Request
+import com.github.viclovsky.swagger.coverage.SwaggerCoverageRestAssured
 import io.restassured.RestAssured.given
 import io.restassured.response.Response
 import io.restassured.specification.RequestSpecification
@@ -12,6 +13,7 @@ class UncheckedBuildConfig(spec: RequestSpecification): Request(spec), CrudInter
 
     override fun create(obj: Any): Response {
         return given()
+            .filter(SwaggerCoverageRestAssured())
             .spec(spec)
             .body(obj)
             .post(BUILD_CONFIG_ENDPOINT)
@@ -27,6 +29,7 @@ class UncheckedBuildConfig(spec: RequestSpecification): Request(spec), CrudInter
 
     override fun delete(id: String): Response {
         return given()
+            .filter(SwaggerCoverageRestAssured())
             .spec(spec)
             .delete("$BUILD_CONFIG_ENDPOINT/id:$id")
     }

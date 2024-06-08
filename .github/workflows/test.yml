@@ -94,8 +94,46 @@ jobs:
       - name: Run UI tests
         run: ./mvnw test -Dxml-suite=testng-suites/ui-suite.xml
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+      - name: Load test report history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
         with:
-          name: my-artifacts
-          path: target/
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: target/allure-results
+
+      - name: Publish test report to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      - name: Run Swagger coverage
+        if: always()
+        run: swagger-coverage-commandline-1.5.0/bin/swagger-coverage-commandline -s http://$HOST:8111/app/rest/swagger.json -i swagger-coverage-output
+
+      - name: Create folder to publish swagger coverage
+        if: always()
+        run: |
+          mkdir swagger-coverage
+          mv swagger-coverage-report.html swagger-coverage/swagger-coverage-report.html
+
+      - name: Publish Swagger test report to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: swagger-coverage
+          destination_dir: swagger-coverage
+
