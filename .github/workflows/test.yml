@@ -110,7 +110,7 @@ jobs:
           allure_history: allure-history
           allure_results: target/allure-results
 
-      - name: Publish test report
+      - name: Publish test report to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
@@ -122,15 +122,18 @@ jobs:
         if: always()
         run: swagger-coverage-commandline-1.5.0/bin/swagger-coverage-commandline -s http://$HOST:8111/app/rest/swagger.json -i swagger-coverage-output
 
-      - name: PRINT ls swagger-coverage-output
+      - name: Create folder to publish swagger coverage
         if: always()
-        run: ls -la swagger-coverage-output
+        run: |
+          mkdir swagger-coverage
+          mv swagger-coverage-report.html swagger-coverage/swagger-coverage-report.html
 
-      - name: PRINT ls target
+      - name: Publish Swagger test report to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         if: always()
-        run: ls -la target
-
-      - name: PRINT ls .
-        if: always()
-        run: ls -la
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: swagger-coverage
+          destination_dir: swagger-coverage
 
