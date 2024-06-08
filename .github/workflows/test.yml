@@ -117,3 +117,16 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
+
+      - name: Run Swagger coverage
+        if: always()
+        run: swagger-coverage-commandline-1.5.0/bin/swagger-coverage-commandline -s http://$HOST:8111/app/rest/swagger.json -i target/swagger-coverage-output
+
+      - name: PRINT ls target/swagger-coverage-output
+        if: always()
+        run: ls -la target/swagger-coverage-output
+
+      - name: PRINT ls .
+        if: always()
+        run: ls -la
+

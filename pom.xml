@@ -21,6 +21,7 @@
         <gson.version>2.10.1</gson.version>
         <assertj.version>3.25.3</assertj.version>
         <selenide.version>7.3.1</selenide.version>
+        <swagger-coverage.version>1.5.0</swagger-coverage.version>
         <xml-suite>testng-suites/default.xml</xml-suite>
     </properties>
 
@@ -160,6 +161,11 @@
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.viclovsky</groupId>
+            <artifactId>swagger-coverage-rest-assured</artifactId>
+            <version>${swagger-coverage.version}</version>
         </dependency>
     </dependencies>
 </project>
