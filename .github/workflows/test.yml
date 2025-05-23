@@ -13,6 +13,7 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
+
       - name: Stop and remove containers and files (mostly for local act run)
         run: |
           docker stop selenoid || true
